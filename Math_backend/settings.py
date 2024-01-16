@@ -77,7 +77,14 @@ WSGI_APPLICATION = 'Math_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mathdb',
+        'USER': 'mathdb_user',
+        'PASSWORD': 'DQUnn3WlvvOwOfXTDlpZrZ01tnh9aM7a',
+        'HOST': 'dpg-cmj7btv109ks739q7f90-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
 
 
