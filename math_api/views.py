@@ -21,15 +21,15 @@ class MathAPIView(APIView):
             result = self.perform_math_operation(operation, expression, limit_value)
             numerical_result = self.perform_numerical_operation(operation, expression, x_value, upper_limit, lower_limit)
 
-            MathOperation.objects.create(
-                operation=operation,
-                expression=expression,
-                result=result,
-                numerical_result=numerical_result,
-                upper_limit=upper_limit,
-                lower_limit=lower_limit,
-                x_value=x_value
-            )
+            # MathOperation.objects.create(
+            #     operation=operation,
+            #     expression=expression,
+            #     result=result,
+            #     numerical_result=numerical_result,
+            #     upper_limit=upper_limit,
+            #     lower_limit=lower_limit,
+            #     x_value=x_value
+            # )
 
             return Response({'result': result, 'numerical_result': numerical_result})
         else:
