@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from math_api.views import MathAPIView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/math/', MathAPIView.as_view(), name='math-api'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
