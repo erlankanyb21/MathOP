@@ -31,7 +31,7 @@ class MathAPIView(APIView):
             #     x_value=x_value
             # )
 
-            return Response({'result': result, 'numerical_result': numerical_result})
+            return Response({'result': result +" + c", 'numerical_result': numerical_result})
         else:
             return Response({'error': 'Invalid data'}, status=400)
 
