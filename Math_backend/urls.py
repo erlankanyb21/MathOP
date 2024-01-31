@@ -24,9 +24,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/math/', MathAPIView.as_view(), name='math-api'),
-    path('api/chat/', ChatAPIView.as_view(), name='chat-api'),
+    path('api/chat/list/', ChatAPIView.as_view(), name='chat-list-api'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
-

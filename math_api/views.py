@@ -111,13 +111,8 @@ class ChatAPIView(APIView):
     serializer_class = ChatSerializer
 
     def get(self, request, *args, **kwargs):
-        chat_instance = Chat.objects.first()
-        if chat_instance:
-            serializer = ChatSerializer(chat_instance, context={'request': request})
-            return Response(serializer.to_representation(chat_instance))
-        else:
-            return Response({"error": "No chat found"}, status=status.HTTP_404_NOT_FOUND)
-
+        serializer = self.serializer_class(self.queryset, many=True, context={'request': request})
+        return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
         serializer = ChatSerializer(data=request.data, context={'request': request})
