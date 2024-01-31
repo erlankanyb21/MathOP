@@ -107,11 +107,14 @@ class MathAPIView(APIView):
             return f'Error in operation: {str(e)}'
         
 class ChatAPIView(APIView):
-    queryset = Chat.objects.all()
     serializer_class = ChatSerializer
 
+    def get_queryset(self):
+        return Chat.objects.all()
+
     def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(self.queryset, many=True, context={'request': request})
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
