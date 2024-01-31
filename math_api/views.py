@@ -121,5 +121,5 @@ class ChatAPIView(APIView):
         serializer = ChatSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             chat_instance = serializer.save()
-            return Response(serializer.to_representation(chat_instance), status=status.HTTP_200_OK)
+            return Response({}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
