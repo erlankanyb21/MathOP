@@ -77,10 +77,7 @@ WSGI_APPLICATION = 'Math_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Используйте SQLite для локальной базы данных
-        'NAME': BASE_DIR / "db.sqlite3",         # Путь к файлу SQLite базы данных
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
