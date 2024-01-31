@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n3035!e%m$$$cu#8gle1iocd#o@ittff)9f!&$i0b1+g+qdz63
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mathapp-3c7y.onrender.com','127.0.0.1']
+ALLOWED_HOSTS = ['mathapp-j4r0.onrender.com']
 
 # Application definition
 
