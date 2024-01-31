@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Math_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE"))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
