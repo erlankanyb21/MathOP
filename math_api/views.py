@@ -1,11 +1,13 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from sympy import Symbol, diff, integrate, limit, oo, sympify
-
-from .models import MathOperation
-
-from .serializers import MathRequestSerializer
+from rest_framework import status
+from .models import MathOperation, Chat
+from rest_framework import serializers
+from .serializers import MathRequestSerializer, ChatSerializer
 
 class MathAPIView(APIView):
     def post(self, request, *args, **kwargs):
@@ -103,3 +105,23 @@ class MathAPIView(APIView):
             return str(result)
         except Exception as e:
             return f'Error in operation: {str(e)}'
+        
+class ChatAPIView(APIView):
+    queryset = Chat.objects.all()
+    serializer_class = ChatSerializer
+
+    def get(self, request, *args, **kwargs):
+        chat_instance = Chat.objects.first()
+        if chat_instance:
+            serializer = ChatSerializer(chat_instance, context={'request': request})
+            return Response(serializer.to_representation(chat_instance))
+        else:
+            return Response({"error": "No chat found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+    def post(self, request, *args, **kwargs):
+        serializer = ChatSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            chat_instance = serializer.save()
+            return Response(serializer.to_representation(chat_instance), status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

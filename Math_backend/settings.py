@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n3035!e%m$$$cu#8gle1iocd#o@ittff)9f!&$i0b1+g+qdz63
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mathapp-9e1c.onrender.com', 'www.mathapp-9e1c.onrender.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'Math_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mathdb',
-        'USER': 'mathdb_user',
-        'PASSWORD': 'DQUnn3WlvvOwOfXTDlpZrZ01tnh9aM7a',
-        'HOST': 'dpg-cmj7btv109ks739q7f90-a.oregon-postgres.render.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',  # Используйте SQLite для локальной базы данных
+        'NAME': BASE_DIR / "db.sqlite3",         # Путь к файлу SQLite базы данных
     }
 }
 
@@ -123,7 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
