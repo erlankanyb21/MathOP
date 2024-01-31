@@ -10,7 +10,7 @@ class MathRequestSerializer(serializers.Serializer):
     lower_limit = serializers.CharField(required=False)
 
 class ChatSerializer(serializers.ModelSerializer):
-    prompt = serializers.CharField(max_length=255)
+    prompt = serializers.CharField(max_length=1000)
     bitmap = serializers.ImageField(allow_null=True, required=False, use_url=True)
     is_from_user = serializers.BooleanField(required=True)
 
