@@ -12,7 +12,7 @@ class MathOperation(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class Chat(models.Model):
-    prompt = models.TextField(max_length=500)
+    prompt = models.TextField()
     bitmap = models.ImageField(upload_to='chat_images/', null=True, blank=True)
     is_from_user = models.BooleanField()
     timestamp = models.DateTimeField(auto_now_add=True)
