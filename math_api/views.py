@@ -33,7 +33,7 @@ class MathAPIView(APIView):
             #     x_value=x_value
             # )
 
-            return Response({'result': result +" + c", 'numerical_result': numerical_result})
+            return Response({'result': result, 'numerical_result': numerical_result})
         else:
             return Response({'error': 'Invalid data'}, status=400)
 
@@ -92,7 +92,7 @@ class MathAPIView(APIView):
         if upper_limit is not None and lower_limit is not None:
             try:
                 integral = integrate(expr, (x, lower_limit, upper_limit))
-                return str(integral)
+                return str(integral + '+ C')
             except Exception as e:
 
                 return f'Error during integration: {str(e)}'
