@@ -48,7 +48,7 @@ class MathAPIView(APIView):
         if operation == 'derivative':
             return str(diff(expr, x))
         elif operation == 'integrate':
-            return str(integrate(expr, x)) + "+ C"
+            return str(integrate(expr, x)) + " + C"
         elif operation == 'limit':
             try:
                 result = limit(expr, x, limit_value)
