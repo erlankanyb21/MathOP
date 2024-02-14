@@ -48,7 +48,7 @@ class MathAPIView(APIView):
         if operation == 'derivative':
             return str(diff(expr, x))
         elif operation == 'integrate':
-            return str(integrate(expr, x))
+            return str(integrate(expr, x)) + "+ C"
         elif operation == 'limit':
             try:
                 result = limit(expr, x, limit_value)
@@ -92,7 +92,7 @@ class MathAPIView(APIView):
         if upper_limit is not None and lower_limit is not None:
             try:
                 integral = integrate(expr, (x, lower_limit, upper_limit))
-                return str(integral + '+ C')
+                return str(integral)
             except Exception as e:
 
                 return f'Error during integration: {str(e)}'
