@@ -34,7 +34,6 @@ ALLOWED_HOSTS = ['mathapp-4b4m.onrender.com']
 INSTALLED_APPS = [
     'rest_framework',
     'math_api',
-    'drf_yasg',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
