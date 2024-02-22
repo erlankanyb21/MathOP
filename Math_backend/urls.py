@@ -27,8 +27,7 @@ schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/math/', MathAPIView.as_view(), name='math-api'),
-    path('api/chat/list/', ChatAPIView.as_view(), name='chat-list-api'),
-    path('swagger/', schema_view, name="swagger-ui")
+    path('api/chat/list/', ChatAPIView.as_view(), name='chat-list-api')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
