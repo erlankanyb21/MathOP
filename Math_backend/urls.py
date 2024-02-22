@@ -20,31 +20,12 @@ from math_api.views import MathAPIView, ChatAPIView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-from rest_framework import permissions
 
-
-schema_view = get_schema_view(
-   openapi.Info(
-      title="Test API",
-      default_version='v1',
-      description="Test APIs for dashboard",
-      #terms_of_service="https://www.google.com/policies/terms/",
-      #contact=openapi.Contact(email="contact@snippets.local"),
-      #license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
-)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/math/', MathAPIView.as_view(), name='math-api'),
     path('api/chat/list/', ChatAPIView.as_view(), name='chat-list-api'),
-    url(r'^swagger(?P<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    url(r'^swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

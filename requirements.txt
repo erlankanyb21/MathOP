@@ -11,5 +11,3 @@ scipy==1.11.4
 djangorestframework==3.14.0
 django-cors-headers==4.3.1
 pillow==10.2.0
-drf-yasg==1.21.7
-django-rest-swagger==2.2.0
