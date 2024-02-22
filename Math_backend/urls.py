@@ -20,12 +20,15 @@ from math_api.views import MathAPIView, ChatAPIView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_swagger.views import get_swagger_view
 
+schema_view = get_swagger_view(title='Pastebin API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/math/', MathAPIView.as_view(), name='math-api'),
     path('api/chat/list/', ChatAPIView.as_view(), name='chat-list-api'),
+    path('swagger/', schema_view, name="swagger-ui")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

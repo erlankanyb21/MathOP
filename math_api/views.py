@@ -8,14 +8,6 @@ from rest_framework import status
 from .models import MathOperation, Chat
 from rest_framework import serializers
 from .serializers import MathRequestSerializer, ChatSerializer
-from django.conf.urls import url
-from rest_framework_swagger.views import get_swagger_view
-
-schema_view = get_swagger_view(title='Pastebin API')
-
-urlpatterns = [
-    url(r'^$', schema_view)
-]
 
 class MathAPIView(APIView):
     def post(self, request, *args, **kwargs):
