@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Chat
+from .models import Chat, AudioFile
 
 class MathRequestSerializer(serializers.Serializer):
     operation = serializers.CharField()
@@ -23,4 +23,13 @@ class ChatSerializer(serializers.ModelSerializer):
         if instance.bitmap:
             ret['bitmap'] = self.context['request'].build_absolute_uri(instance.bitmap.url)
         return ret
+    
+
+class AudioFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AudioFile
+        fields = ['audio_file']
+
+    def create(self, validated_data):
+        return AudioFile.objects.create(**validated_data)
 

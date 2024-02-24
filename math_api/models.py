@@ -13,6 +13,9 @@ class MathOperation(models.Model):
 
 class Chat(models.Model):
     prompt = models.TextField()
-    bitmap = models.ImageField(upload_to='chat_images/', null=True, blank=True)
+    bitmap = models.ImageField(upload_to='chat_images/', null=True)
     is_from_user = models.BooleanField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+class AudioFile(models.Model):
+    audio_file = models.FileField(upload_to='audio_files/')

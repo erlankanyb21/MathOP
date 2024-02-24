@@ -1,13 +1,11 @@
 from django.shortcuts import render
-from rest_framework import viewsets
 from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from sympy import Symbol, diff, integrate, limit, oo, sympify
 from rest_framework import status
-from .models import MathOperation, Chat
-from rest_framework import serializers
-from .serializers import MathRequestSerializer, ChatSerializer
+from .models import MathOperation, Chat, AudioFile
+from .serializers import MathRequestSerializer, ChatSerializer, AudioFileSerializer
 
 class MathAPIView(APIView):
     def post(self, request, *args, **kwargs):
@@ -119,6 +117,24 @@ class ChatAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         serializer = ChatSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response({}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class AudioUploadView(APIView):
+    audio_serializer = AudioFileSerializer
+
+    def get_queryset(self):
+        return AudioFile.objects.all()
+    
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.audio_serializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+    
+    def post(self, request, *args, **kwargs):
+        serializer = AudioFileSerializer(data=request.data, context = {'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response({}, status=status.HTTP_201_CREATED)
